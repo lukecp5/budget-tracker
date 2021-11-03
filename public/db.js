@@ -36,6 +36,14 @@ function investigateDatabase() {
 
       // + Create the cursor to iterate over the records
       const allPending = pendingStore.getAll();
+
+      // + Handle the successful retrieval of the records from the indexed DB
+      allPending.onsuccess = () => {
+            // + If there are records in the indexed DB, then send them to the server for saving to the database
+            if(allPending.length > 0){
+
+            }
+      }
 }
 
 
