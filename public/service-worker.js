@@ -11,3 +11,12 @@ var URLS_TO_CACHE = [
       "/icons/icon-192x192.png",
       "/icons/icon-512x512.png"
 ];
+
+self.addEventListener("install", function(event) {
+      // Perform install steps
+      event.waitUntil(
+        caches.open(CACHE).then(function(cache) {
+          return cache.addAll(urlsToCache);
+        })
+      );
+    });
