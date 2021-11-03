@@ -15,6 +15,13 @@ request.onsuccess = ({target}) => {
 	}
 };
 
+// + Handle the error in the case of the retrieval of the records from the indexed DB
+request.onerror = (event) => {
+console.log(event.target);
+}
+
+
+
 function saveRecord(record) {
 	const transaction = db.transaction(["pending"], "readwrite");
 	const pendingStore = transaction.objectStore("pending");
