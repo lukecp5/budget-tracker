@@ -51,6 +51,11 @@ function investigateDatabase() {
                   })
                   .then(response => response.json())
                   .then(() => {
+                        // + If the records were sent to the server successfully, then clear the records from the indexed DB
+                        const transaction = db.transaction(["pending"], "readwrite");
+                        const pendingStore = transaction.objectStore("pending");
+                        pendingStore.clear();
+                  });
             }
       }
 }
