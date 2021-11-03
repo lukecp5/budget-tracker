@@ -41,7 +41,14 @@ function investigateDatabase() {
       allPending.onsuccess = () => {
             // + If there are records in the indexed DB, then send them to the server for saving to the database
             if(allPending.length > 0){
-
+                  fetch("/api/transaction/bulk", {
+                        method: "POST",
+                        body: JSON.stringify(allPending.result),
+                        headers: {
+                              Accept: "application/json",
+                              "Content-Type": "application/json"
+                        }
+                  })
             }
       }
 }
