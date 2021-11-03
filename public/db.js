@@ -10,7 +10,7 @@ request.onupgradeneeded = ({ target }) => {
 
 function saveRecord(record) {
       const transaction = db.transaction(["pending"], "readwrite");
-      const store = transaction.objectStore("pending");
+      const pendingStore = transaction.objectStore("pending");
     
-      store.add(record);
+      pendingStore.add(record);
     }
