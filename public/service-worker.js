@@ -13,7 +13,6 @@ var URLS_TO_CACHE = [
 ];
 
 self.addEventListener("install", function (event) {
-	// Perform install steps
 	event.waitUntil(
 		caches.open(CACHE).then(function (cache) {
 			return cache.addAll(URLS_TO_CACHE);
@@ -32,8 +31,11 @@ self.addEventListener("fetch", function (event) {
                         cache.put(event.request.url, response.clone());
                         // + Return the original response
                         return response;
-                  });
-            }));
+                  }).catch(err => {
+                  // Network request failed, try to get it from the cache.
+                  return cache.match(event.request);
+                })
+            }).catch(err => console.log(err)));
 
 		// + If the fetch request is not for the API, serve static assets using the cache.
 		return;
