@@ -10,10 +10,8 @@ request.onupgradeneeded = ({target}) => {
 
 request.onsuccess = ({target}) => {
 	db = target.result;
-
-	// check if app is online before reading from db
 	if (navigator.onLine) {
-		checkDatabase();
+		investigateDatabase();
 	}
 };
 
@@ -23,3 +21,13 @@ function saveRecord(record) {
 
 	pendingStore.add(record);
 }
+
+function investigateDatabase() {
+      const transaction = db.transaction(["pending"], "readwrite");
+      const pendingStore = transaction.objectStore("pending");
+
+
+}
+
+
+window.addEventListener("online", investigateDatabase);
