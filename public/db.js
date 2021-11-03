@@ -30,9 +30,11 @@ function saveRecord(record) {
 }
 
 function investigateDatabase() {
+      // + Initialize the transaction 
       const transaction = db.transaction(["pending"], "readwrite");
       const pendingStore = transaction.objectStore("pending");
 
+      // + Create the cursor to iterate over the records
       const allPending = pendingStore.getAll();
 }
 
