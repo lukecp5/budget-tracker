@@ -4,6 +4,10 @@ let db;
 const request = iDB.open("budgetDB", 1);
 
 function saveRecord(record) {
+      const transaction = db.transaction(["pending"], "readwrite");
+      const store = transaction.objectStore("pending");
+    
+      store.add(record);
     }
 
 request.onupgradeneeded = ({ target }) => {
