@@ -49,6 +49,8 @@ function investigateDatabase() {
                               "Content-Type": "application/json"
                         }
                   })
+                  .then(response => response.json())
+                  .then(() => {
             }
       }
 }
