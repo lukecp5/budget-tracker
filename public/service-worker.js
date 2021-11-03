@@ -21,13 +21,10 @@ self.addEventListener("install", function (event) {
 	);
 });
 
+self.addEventListener("fetch", function (event) {
+	if (event.request.url.includes("/api/")) {
 
-self.addEventListener("fetch", function(event) {
-      if (event.request.url.includes("/api/")) {
-      
-
-
-            
-      return;
-      }
-})
+		// + If the fetch request is not for the API, serve static assets using the cache.
+		return;
+	}
+});
