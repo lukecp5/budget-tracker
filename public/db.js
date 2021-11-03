@@ -26,7 +26,7 @@ function investigateDatabase() {
       const transaction = db.transaction(["pending"], "readwrite");
       const pendingStore = transaction.objectStore("pending");
 
-
+      const allPending = pendingStore.getAll();
 }
 
 
