@@ -17,7 +17,7 @@ request.onsuccess = ({target}) => {
 
 // + Handle the error in the case of the retrieval of the records from the indexed DB
 request.onerror = (event) => {
-console.log(event.target);
+console.log(`\nREQUEST ERROR: \n${event.target}\n`);
 }
 
 
