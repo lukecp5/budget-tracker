@@ -40,4 +40,18 @@ self.addEventListener("fetch", function (event) {
 		// + If the fetch request is not for the API, serve static assets using the cache.
 		return;
 	}
+
+      event.respondWith(
+            fetch(event.request).catch(function () {
+                  return caches.match(event.request).then(function (response) {
+                        if (response) {
+                              return response;
+                        } else if (event.request.headers.get("accept").includes("text/html")) {
+                              return caches.match("/");
+                        }
+                  }
+
+      )
+})
+)
 });
